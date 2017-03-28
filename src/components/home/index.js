@@ -2,17 +2,37 @@
  * Created by dongjiehe on 2017/3/26.
  */
 import React,{Component} from 'react'
-import {Route,Link} from 'react-router-dom'
-import test from '../test/index'
+import {Route} from 'react-router-dom'
+import Test from '../test/index'
+import {Tabs,TabBody,TabOne,TabPane} from '../../module/tab'
+
+import '../../style/style.less'
 class Index extends Component{
     constructor(props){
         super(props)
     }
     render(){
         return(<div>
-            <Link to='/product'>home</Link>
-            <Link to='/test1'>test1</Link>
-            <Route path='/test1' exact component={test}/>
+            <Tabs>
+             <TabBody>
+                <TabOne>
+                    <Test/>
+                </TabOne>
+                 <TabOne>
+                     <div>第二</div>
+                 </TabOne>
+             </TabBody>
+                <TabPane>
+                 <div className='barText'>
+                   主页
+                 </div>
+                </TabPane>
+                <TabPane>
+                    <div className='barText'>
+                        理财
+                    </div>
+                </TabPane>
+            </Tabs>
         </div>)
     }
 }
