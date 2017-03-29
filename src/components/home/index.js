@@ -1,32 +1,37 @@
 /**
+ * Created by wangdongfang on 17/3/29.
+ */
+/**
  * Created by dongjiehe on 2017/3/26.
  */
 import React,{Component} from 'react'
-import {Route,NavLink} from 'react-router-dom'
-import Test from '../test/index'
-import Bottom from '../../module/nav/bottom'
+import Banner from '../../resources/img/home/0.jpeg'
 import cn from 'classnames'
+import {Link} from 'react-router-dom'
 import '../../style/style.less'
-
+import './index.less'
 class Index extends Component{
     constructor(props){
-        super(props);
-        this.state={
-            name:['主页','产品','我的'],
-            url:['/','/product','/mine']
-        }
-    }
-    navDom=()=>{
-        const DomArry=[],
-              {name,url}=this.state;
-        name.map((item,i)=>{
-            DomArry.push(<NavLink to={url[i]} key={i} className={cn('link','barLine')} activeClassName='activeBarText'>{item}</NavLink>)
-        });
-        return DomArry
+        super(props)
     }
     render(){
-        return(<div>
-            <Bottom nodeArry={this.navDom()}/>
+
+        return(<div className="homeBody">
+           <div className="row">
+            <div className="banner">
+                <img src={Banner}/>
+            </div>
+           </div>
+            <div className={cn('row','bgf')}>
+                <ul className="imgUl">
+                    <li className="imgUlHead">
+                        <Link to={{pathname:'/active/1',state:'中秋活动'}}> 中秋活动</Link>
+                    </li>
+                    <li className="imgUlHead">
+                        <Link to={{pathname:'/active/2',state:'元旦节活动'}}> 元旦节活动</Link>
+                    </li>
+                </ul>
+            </div>
         </div>)
     }
 }

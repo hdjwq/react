@@ -1,19 +1,27 @@
 /**
  * Created by dongjiehe on 2017/3/27.
  */
-import {Home,Product} from './component';
+import {Index,Active} from './component';
 const home=[{
     path:'/',
     exact:true,
-    component:Home,
+    component:Index,
 },{
-    path:'/test1',
+    path:'/home',
     exact:true,
-    component:Home
-}];
-const product=[{
+    component:Index
+},{
     path:'/product',
     exact:true,
-    component:Product
+    component:Index
+},{
+    path:'/mine',
+    exact:true,
+    component:Index
+}];
+const active=[{
+    path:'/active/:id',
+    exact:true,
+    component:Active
 }]
-export {home,product}
+export {home,active}
