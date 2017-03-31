@@ -17,7 +17,6 @@ const Fenth=(url,type)=>{
 }
 let request={};
 config.map(({name,url,type})=>{
-     request[name]=Fenth(url,type)
+     request[name]=()=>{return Fenth(url,type)}
 })
-console.log(request)
 export default request
