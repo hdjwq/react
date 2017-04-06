@@ -28,12 +28,8 @@ const Fenth=(url,type,data)=>{
 }
 let request={};
 config.map(({name,url,type})=>{
-<<<<<<< HEAD
      request[name]=(data)=>{
          return Fenth(url,type,data)
      }
-=======
-     request[name]=()=>{return Fenth(url,type)}
->>>>>>> fcf37b561fdef880ce97c0f62d2eb4b75b284638
 })
 export default request
