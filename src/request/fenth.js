@@ -2,22 +2,34 @@
  * Created by wangdongfang on 17/3/29.
  */
 import config from './config'
-const Fenth=(url,type)=>{
+import axios from 'axios'
+import processing from '../module/processing'
+const Fenth=(url,type,data)=>{
       return new Promise((resolve,reject)=>{
-          let option={
-              credentials:"include",
-              method: type || 'GET',
-              header:{
-                  'Content-Type': 'application/x-www-form-urlencoded'
-              }
+          let body='',
+              urlN=url;
+          if (type=='GET'&&data){
+              urlN=processing.url(url,data)
+          }else {
+              body=data
           }
-          fetch(url,option)
-              .then((res)=>{console.log(res)})
+          axios({
+              method: type,
+              url: urlN,
+              timeout:10000,
+              data:body,
+          }).then((response)=>{
+              return resolve(response)
+          })
+            .catch((err)=>{
+              return resolve(err)
+            })
       })
 }
 let request={};
 config.map(({name,url,type})=>{
-     request[name]=Fenth(url,type)
+     request[name]=(data)=>{
+         return Fenth(url,type,data)
+     }
 })
-console.log(request)
 export default request

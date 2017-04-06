@@ -10,7 +10,6 @@ import Bottom from '../../module/nav/bottom'
 import cn from 'classnames'
 import '../../style/style.less'
 import './index.less'
-
 class Index extends Component{
     constructor(props){
         super(props);
@@ -18,6 +17,16 @@ class Index extends Component{
             name:['主页','产品','我的'],
             url:['/home','/product','/mine']
         }
+    }
+    routeComponent=()=>{
+       const{match}=this.props;
+       if (match.path=='/home'){
+           return home
+       }else if (match.path=='/product'){
+           return product
+       }else {
+           return mine
+       }
     }
     navDom=()=>{
         const DomArry=[],
@@ -28,15 +37,21 @@ class Index extends Component{
         return DomArry
     }
     render(){
-        return(<div className="bg">
-              <div className="homeBody">
-                <Route path="/" exact render={()=>(<Redirect to="/home"/>)}/>
-                <Route path="/home" exact component={home}/>
-                  <Route path="/product" exact component={product}/>
-                  <Route path="/mine" exact component={mine}/>
-              </div>
-            <Bottom nodeArry={this.navDom()}/>
-        </div>)
+        return(
+            <Route render={({location})=>(
+                <div className="bg">
+                    <div className="homeBody">
+                        <Route path="/" exact render={()=>(<Redirect to="/home"/>)}/>
+                        <Route
+                            location={location}
+                            key={location.key}
+                            component={this.routeComponent()}
+                        />
+                    </div>
+                    <Bottom nodeArry={this.navDom()}/>
+                </div>
+            )}/>
+            )
     }
 }
 export default Index

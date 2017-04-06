@@ -2,8 +2,8 @@
  * Created by wangdongfang on 17/3/29.
  */
 const reqObj=[{
-    name:'test',
-    url:'https://www.baidu.com/',
+    name:'GET_ACTIVE',
+    url:'http://localhost:3000/active',
     type:'GET'
 }]
 

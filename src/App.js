@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Switch,Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
@@ -7,7 +7,9 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import Home from './router/homesever'
 import Active from './router/activesever'
 import reducers from './reducers'
-import req from './request/fenth'
+import createSagaMiddleware from 'redux-saga'
+import sagas from './saga/index'
+const sagaMiddleware=createSagaMiddleware();
 const history = createHistory();
 const middleware = routerMiddleware(history)
 const store = createStore(
@@ -15,19 +17,16 @@ const store = createStore(
         ...reducers,
         router: routerReducer
     }),
-    applyMiddleware(middleware)
+    applyMiddleware(middleware,sagaMiddleware)
 )
-console.log(req.test)
+sagaMiddleware.run(sagas);
 class app extends Component{
     render(){
-        const {location}=this.props;
         return(
             <div>
-             <Switch>
                  {Home()}
                  {Active()}
-             </Switch>
-        </div>
+            </div>
             )
     }
 }
