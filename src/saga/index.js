@@ -2,6 +2,7 @@
  * Created by wangdongfang on 17/4/6.
  */
 import infoSaga from './info'
+import listSaga from './list'
 import {fork} from 'redux-saga/effects'
 const changeFork=(...arrg)=>{
       const forkArrg=[];
@@ -21,5 +22,5 @@ const changeFork=(...arrg)=>{
     return forkArrg;
 }
 export default function* () {
-    yield changeFork(infoSaga)
+    yield changeFork(infoSaga,listSaga)
 }

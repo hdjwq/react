@@ -14,7 +14,7 @@ class Index extends Component{
     constructor(props){
         super(props);
         this.state={
-            name:['主页','产品','我的'],
+            name:['电影','图书','我的'],
             url:['/home','/product','/mine']
         }
     }

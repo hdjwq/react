@@ -28,7 +28,16 @@ const takeReq=function* (action) {
                  key:key,
              })
          }
-      }else {
+      }else if (response.hasOwnProperty('message')){
+          if (response.message=='取消'){
+              yield put({
+                  type:INFO_END,
+                  key:key,
+                  data:'请求取消'
+              })
+          }
+      }
+      else {
           yield put({
               type:INFO_ERR,
               key:key,

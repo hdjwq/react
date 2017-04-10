@@ -1,3 +1,7 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
 .barText{
   line-height: 44px;
   font-size: 14px;
@@ -41,9 +45,51 @@
 }
 .imgUl{
   display: block;
-  padding: 10px 0px;
   li{
     display: block;
+  }
+  .moveLi{
+    position: relative;
+    padding: 15px;
+    background-color: #ffffff;
+    margin-top: 10px;
+    &:first-child{
+      margin-top: 0px;
+    }
+    .movieTitle{
+      font-size: 16px;
+      line-height: 20px;
+      padding-bottom: 8px;
+    }
+    .movieImg{
+      width: 100px;
+      height: 147px;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    .movieText{
+      font-size: 14px;
+      height: 147px;
+      padding-left: 130px;
+      position: relative;
+    }
+    .moviejs{
+     position: absolute;
+      left: 130px;
+      top: 30px;
+      bottom: 0px;
+      right: 0px;
+      overflow:hidden;
+      line-height: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      color: #333;
+      word-wrap: break-word;
+      word-break: break-all;
+      text-overflow:ellipsis;
+    }
   }
   .imgUlHead{
     font-size: 14px;

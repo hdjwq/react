@@ -5,10 +5,11 @@ import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import info from '../../actionType/info'
 import Loading from '../../module/loading'
+import reqObj from '../../request/reqObj'
 class Index extends Component{
     componentDidMount(){
        const {id}=this.props.match.params;
-       this.props.getInfo(id)
+        this.props.getInfo(id)
     }
     loadDom=()=>{
         return(<Loading/>)
@@ -18,6 +19,9 @@ class Index extends Component{
        return(<div>
            {datas.data.name}
        </div>)
+    }
+    componentWillUnmount(){
+        reqObj[info.GET_ACTIVE]('取消');
     }
     loadErrDom=()=>{
         return (<div>
@@ -33,7 +37,10 @@ class Index extends Component{
         if (err){
             Dom=this.loadErrDom()
         }
-        return(<div>{Dom}</div>)
+        return(
+         <div>
+             {Dom}
+        </div>)
     }
 }
 const data=(state)=>({

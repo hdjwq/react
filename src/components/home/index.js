@@ -5,38 +5,58 @@
  * Created by dongjiehe on 2017/3/26.
  */
 import React,{Component} from 'react'
-import Banner from '../../resources/img/home/0.jpeg'
-import cn from 'classnames'
-import {Link,withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import list from '../../actionType/list'
+import Loading from '../../module/loading'
 import '../../style/style.less'
 import './index.less'
+const {MOVIE}=list;
 class Index extends Component{
     constructor(props){
         super(props)
     }
     componentDidMount(){
-
+    this.props.getList()
+    }
+    loadDom=()=>{
+        return <Loading/>
+    }
+    loadEndDom=()=>{
+        const {listData,history:{push}}=this.props;
+        return(<ul className="imgUl">
+            {listData.map((item,i)=>{
+                const {url,title,text}=item;
+                return(<li className="moveLi" key={i}>
+                    <img src={url} className="movieImg"/>
+                    <div className="movieText">
+                        <h3 className="movieTitle">{title}</h3>
+                        <div className="moviejs">
+                            {text}
+                        </div>
+                    </div>
+                </li>)
+            })}
+        </ul>)
     }
     render(){
-       const {push}=this.props.history;
-        return(<div className="homeBody">
-           <div className="row">
-            <div className="banner">
-                <img src={Banner}/>
-            </div>
-           </div>
-            <div className={cn('row','bgf')}>
-                <ul className="imgUl">
-                    <li className="imgUlHead">
-                        <Link to={{pathname:'/active/1',state:'中秋活动'}}> 中秋活动</Link>
-                    </li>
-                    <li className="imgUlHead">
-                        <Link to={{pathname:'/active/2',state:'元旦节活动'}}> 元旦节活动</Link>
-                    </li>
-                </ul>
-                <div onClick={()=>{push('/product')}}>点我</div>
-            </div>
+        const {listData}=this.props;
+        let Dom=this.loadDom();
+        if (listData){
+            Dom=this.loadEndDom();
+        }
+        return(<div className="homeBg">
+            {Dom}
         </div>)
     }
 }
-export default withRouter(Index)
+const datas=(state)=>({
+      listData:state.list.getIn([MOVIE,'data'])
+})
+const dispatchFn=(dispatch)=>({
+      getList(){
+          dispatch({
+              type:MOVIE
+          })
+      }
+})
+export default connect(datas,dispatchFn)(Index);
