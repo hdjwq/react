@@ -7,6 +7,7 @@ var webpackdev=require('webpack-dev-middleware');
 var webpackhot=require('webpack-hot-middleware');
 var path=require('path');
 var dev=require('./dev');
+var open=require('open')
 dev.push('dev');
 var webpackconfig=require('./webpack.config.js');
 var fs=require('fs');
@@ -19,7 +20,7 @@ app.use(webpackdev(comfir,{
     headers: { "X-Custom-Header": "yes" },
     stats: {
         colors: true
-    }
+    },
 }))
 
 app.use(webpackhot(comfir));
@@ -38,6 +39,6 @@ app.listen('8080',function (err) {
     if (err){
         console.log(err)
     }else {
-        console.log('请打开http://localhost:8080')
+        open('http://localhost:8080')
     }
 })

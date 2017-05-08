@@ -3,6 +3,6 @@
  */
 import React from 'react'
 import ReactDom from 'react-dom'
-import './index.less'
-import img from './img/huobg.png'
-ReactDom.render(<div className="body">uuuuu<img src={img}/></div>,document.getElementById('root'))
+import App from './app'
+import 'index.less'
+ReactDom.render(<App/>,document.getElementById('root'))
