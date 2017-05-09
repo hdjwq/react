@@ -3,10 +3,20 @@
  */
 import React from 'react'
 import RouteComponent from './pages/route/index'
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import Animation from './pages/components/animation/index'
 const App=()=>(
     <Router>
-        <RouteComponent/>
+         <Route render={(props)=>(
+             <Animation>
+                 <Route
+                     {...props}
+                     key={props.location.key}
+                     path="/"
+                     component={RouteComponent}
+                 />
+             </Animation>
+         )}/>
     </Router>
 )
 export default App

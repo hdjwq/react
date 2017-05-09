@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react'
 import homeIndex from '../home/index/index'
+import product from '../product/index'
 import {Route} from 'react-router-dom'
 const route=[{
     path:'/',
@@ -24,6 +25,10 @@ const route=[{
     path:'/mine',
     exact:true,
     component:homeIndex
+},{
+    path:'/productList',
+    exact:true,
+    component:product
 }];
 class RouteComponent extends Component{
     render(){

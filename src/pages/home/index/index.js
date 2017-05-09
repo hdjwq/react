@@ -2,11 +2,15 @@
  * Created by Administrator on 2017/5/3.
  */
 import React,{Component} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink,Redirect,Route} from 'react-router-dom'
 import cn from 'classnames'
 import './index.less'
 import Cav from '../../components/cav/index'
 import NavBar from '../../components/navBar/index'
+import homeIndex from '../home/index'
+import selectedIndex from '../selected/index'
+import mineIndex from '../mine/index'
+import findIndex from '../find/index'
 import icon from '../../../img/icon.png'
 import icon1 from '../../../img/icon1.png'
 import icon2 from '../../../img/icon2.png'
@@ -85,7 +89,11 @@ class Index extends Component{
                    leftClick={(flag)=>{this.leftClick(flag)}} leftFlag={leftFlag}
                    navStyle={navBar[type]}/>
            <div className="bottom_body">
-
+               <Route path='/' exact render={()=><Redirect to='/home'/>}/>
+               <Route path='/home' exact component={homeIndex}/>
+               <Route path='/product' exact component={selectedIndex}/>
+               <Route path='/find' exact component={findIndex}/>
+               <Route path='/mine' exact component={mineIndex}/>
            </div>
             <Cav cavDom={cavArry} cavStyle={navBar[type]}/>
        </div>)
