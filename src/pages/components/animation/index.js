@@ -17,6 +17,9 @@ class Index extends Component{
     getUrl=(url)=>{
         let flag;
         switch(url){
+            case (''):
+                flag=false;
+                break;
             case ('/find'):
                 flag=false;
                 break;

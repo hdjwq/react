@@ -3,10 +3,11 @@
  */
 import React from 'react'
 import RouteComponent from './pages/route/index'
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link,MemoryRouter} from 'react-router-dom'
 import Animation from './pages/components/animation/index'
 const App=()=>(
     <Router>
+        {/*<MemoryRouter initialEntries={[ '/', '/home']}>*/}
          <Route render={(props)=>(
              <Animation>
                  <Route
@@ -17,6 +18,7 @@ const App=()=>(
                  />
              </Animation>
          )}/>
+        {/*</MemoryRouter>*/}
     </Router>
 )
 export default App

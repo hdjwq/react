@@ -34,7 +34,7 @@ class RouteComponent extends Component{
     render(){
         return(<div>
             {route.map((route,i)=>(
-                <Route {...route} key={i}/>
+                <Route {...route} key={i} hdj="fafafafa"/>
             ))}
         </div>)
     }

@@ -13,19 +13,24 @@ class Index extends Component{
     }
     timeAdd=()=>{
         let a=1;
-        setTimeout(()=>{
+        this.time=setTimeout(()=>{
             a++;
             const {listArry}=this.state;
-            listArry.push(a)
+            listArry.push(a);
             this.setState({
                 listArry
             })
         },5000)
     }
+    componentWillUnmount(){
+        clearTimeout(this.time)
+    }
     render(){
-        const {listArry,flage}=this.state;
+        const {listArry}=this.state;
+        const {history:{goBack}}=this.props;
         return(<div>
             我是主页
+            {/*<div onClick={()=>{goBack()}}>点我返回</div>*/}
             {listArry.map((item,i)=>(
                 <div key={i} className={cns('list')}>{item}</div>
             ))}
