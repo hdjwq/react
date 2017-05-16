@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "bundle-loader": "^0.5.5",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "open": "0.0.5",
