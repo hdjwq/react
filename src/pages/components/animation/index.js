@@ -9,7 +9,7 @@ class Index extends Component{
         beforUrl:''
     }
     componentDidMount(){
-       const {children:{props:{location:{pathname}}}}=this.props;
+       const {location:{pathname}}=this.props;
       this.setState({
           beforUrl:pathname
       })
@@ -38,7 +38,7 @@ class Index extends Component{
         return flag
     }
     componentWillReceiveProps(next){
-        const {children:{props:{location:{pathname},history:{action}}}}=next;
+        const {location:{pathname},history:{action}}=next;
         const {beforUrl}=this.state;
         let flag=this.getUrl(beforUrl);
         let flag1=this.getUrl(pathname);

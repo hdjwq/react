@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import RouteComponent from './pages/route/index'
-import {BrowserRouter as Router,Route,MemoryRouter} from 'react-router-dom'
+import {BrowserRouter as Router,Route,MemoryRouter,Redirect} from 'react-router-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import Animation from './pages/components/animation/index'
@@ -13,16 +13,16 @@ const App=()=>(
     <Provider store={store}>
     <Router >
         {/*<MemoryRouter initialEntries={[ '/', '/home']}>*/}
-         <Route render={(props)=>(
-             <Animation>
+         <Route render={(props)=>{
+             return(<Animation {...props}>
                  <Route
                      {...props}
                      key={props.location.key}
                      path="/"
                      component={RouteComponent}
                  />
-             </Animation>
-         )}/>
+             </Animation>)
+         }}/>
         {/*</MemoryRouter>*/}
     </Router>
     </Provider>

@@ -37,12 +37,20 @@ class Index extends Component{
     componentWillUnmount(){
         clearTimeout(this.time)
     }
+    isLogon=()=>{
+        sessionStorage.setItem('login',true)
+    }
+    unLogon=()=>{
+        sessionStorage.removeItem('login')
+    }
     render(){
         const {listArry}=this.state;
         const {history:{goBack},test,info}=this.props;
         return(<div>
             {info&&info.getIn(['a'])||'没有数据'}
             <div onClick={test}>点我</div>
+            <div onClick={this.isLogon}>点我登录</div>
+            <div onClick={this.unLogon}>点我退出</div>
             {/*<div onClick={()=>{goBack()}}>点我返回</div>*/}
             {listArry.map((item,i)=>(
                 <div key={i} className={cns('list')}>{item}</div>
