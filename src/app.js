@@ -3,10 +3,15 @@
  */
 import React from 'react'
 import RouteComponent from './pages/route/index'
-import {BrowserRouter as Router,Route,Link,MemoryRouter} from 'react-router-dom'
+import {BrowserRouter as Router,Route,MemoryRouter} from 'react-router-dom'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
 import Animation from './pages/components/animation/index'
+import combineReducers from './reducer/index'
+const store=createStore(combineReducers)
 const App=()=>(
-    <Router>
+    <Provider store={store}>
+    <Router >
         {/*<MemoryRouter initialEntries={[ '/', '/home']}>*/}
          <Route render={(props)=>(
              <Animation>
@@ -20,5 +25,6 @@ const App=()=>(
          )}/>
         {/*</MemoryRouter>*/}
     </Router>
+    </Provider>
 )
 export default App

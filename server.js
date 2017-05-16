@@ -24,7 +24,9 @@ app.use(webpackdev(comfir,{
 }))
 
 app.use(webpackhot(comfir));
-
+app.post('/test',function (req,res) {
+    res.send({a:'你好啊',list:['我干']})
+})
 app.get('*',function (req,res) {
     fs.readFile(path.join(__dirname,'./index.html'),'utf-8',function (err,data) {
          var $=cheerio.load(data);

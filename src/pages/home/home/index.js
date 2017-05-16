@@ -3,7 +3,19 @@
  */
 import React,{Component} from 'react'
 import cns from 'classnames'
+import {connect} from 'react-redux'
+import {START} from '../../../action/info'
+import  get from '../../../request/index'
 import './index.less'
+const data=(state,owen)=>({
+       info:state.info.getIn([START])
+})
+const dispathFn=(dispath,own)=>({
+       test(){
+           get(dispath,{type:START,data:{a:'尼玛'}},'test');
+       }
+})
+@connect(data,dispathFn)
 class Index extends Component{
     state={
         listArry:['1'],
@@ -27,9 +39,10 @@ class Index extends Component{
     }
     render(){
         const {listArry}=this.state;
-        const {history:{goBack}}=this.props;
+        const {history:{goBack},test,info}=this.props;
         return(<div>
-            我是主页
+            {info&&info.getIn(['a'])||'没有数据'}
+            <div onClick={test}>点我</div>
             {/*<div onClick={()=>{goBack()}}>点我返回</div>*/}
             {listArry.map((item,i)=>(
                 <div key={i} className={cns('list')}>{item}</div>
